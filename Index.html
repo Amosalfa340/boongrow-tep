@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Downloader App</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .header {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: black;
+    color: white;
+    padding-top: 60px;
+    transition: all 0.3s ease;
+  }
+  .sidebar.active {
+    left: 0;
+  }
+  .menu {
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    display: block;
+  }
+  .menu:hover {
+    background-color: #333;
+  }
+  .cancel-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  .content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+  .menu-header {
+    background-color: red;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+  .section {
+    box-sizing: border-box;
+  background: #f0f0f0;
+  width: 340px;
+  margin: 20px auto;
+  height: 170px;
+  border-radius: 5px;
+}
+  .search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 15px auto;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  .search-input {
+    width: calc(100% - 50px); /* Adjust width to accommodate icon and button */
+    border: none;
+    padding: 20px 50px 20px 40px; /* Adjust padding to leave space for icon and button */
+    font-size: 16px;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #333;
+    padding: 20px 15px;
+  }
+  .paste-button {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+  .download-button {
+    background-color: #66bb6a;
+    color: white;
+    border: none;
+    padding:  15px 88px;
+    border-radius: 5px;
+    margin-top: 1px
+    display: block;
+    margin-left: 20px;
+    margin-right: auto;
+    cursor: pointer;
+  }
+  
+  .icon-section {
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 30px auto;
+  }
+  .icon {
+    text-align: center;
+  }
+  .icon i {
+    font-size: 24px;
+  }
+  .icon-title {
+    margin-top: 10px;
+    font-weight: ;
+  }
+  .facebook-icon {
+    color: #3b5998; /* Facebook blue color */
+  }
+  .instagram-icon {
+    color: #e4405f; /* Instagram pink color */
+  }
+  .dailymotion-icon {
+    color: #0066dc; /* Dailymotion blue color */
+  }
+  .threads-icon {
+    color: #1a1a1a; /* Threads black color */
+  }
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .navbar-icon {
+    font-size: 24px;
+    text-align: center;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  .navbar-text {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="menu" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+    <span class="menu-text"></span>
+  </div>
+  <div class="header-title">Video Downloader App</div>
+  <div class="download">
+    <i class="fas fa-download"></i>
+    <span class="menu-text"></span>
+  </div>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="cancel-btn" onclick="toggleSidebar()">
+    <i class="fas fa-times"></i>
+  </div>
+  <div class="menu-header">Menu</div>
+  <a href="#" class="menu"><i class="fas fa-home"></i> Home</a>
+  <a href="#" class="menu"><i class="fas fa-video"></i> Videos</a>
+  <a href="#" class="menu"><i class="fas fa-folder"></i> Folders</a>
+  <a href="#" class="menu"><i class="fas fa-star"></i> Favourites</a>
+  <a href="#" class="menu"><i class="fas fa-cloud-download-alt"></i> Download</a>
+  <div class="menu-header">Other</div>
+  <a href="#" class="menu"><i class="fas fa-comment"></i> Feedback</a>
+  <a href="#" class="menu"><i class="fas fa-star"></i> Rate us</a>
+  <a href="#" class="menu"><i class="fas fa-th-list"></i> More apps</a>
+  <a href="#" class="menu"><i class="fas fa-share-alt"></i> Share app</a>
+  <a href="#" class="menu"><i class="fas fa-lock"></i> Privacy</a>
+</div>
+
+<div class="section">
+<div class="search-container">
+  <input type="text" class="search-input" placeholder="Search or type URL">
+  <i class="fas fa-search search-icon"></i>
+  <button class="paste-button"><i class="fas fa-clipboard"></i></button>
+</div>
+
+<button class="download-button">Download Video</button>
+</section>
+
+<div class="icon-section">
+  <div class="icon">
+    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook facebook-icon"></i></a>
+    <div class="icon-title">Facebook</div>
+  </div>
+  <div class="icon">
+    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram instagram-icon"></i></a>
+    <div class="icon-title">Instagram</div>
+  </div>
+  <div class="icon">
+    <a href="https://www.dailymotion.com" target="_blank"><i class="fab fa-dailymotion dailymotion-icon"></i></a>
+    <div class="icon-title">Dailymotion</div>
+  </div>
+  <div class="icon">
+    <a href="https://www.example.com/threads" target="_blank"><i class="fas fa-comments threads-icon"></i></a>
+    <div class="icon-title">Threads</div>
+  </div>
+</div>
+ <img src="image10.png" alt="Paris" style="width:340px;height:250px">
+        </div>
+        
+        <div class="navbar">
+  <div class="navbar-icon"><i class="fas fa-bars"></i><div class="navbar-text">Menu</div></div>
+  <div class="navbar-icon"><i class="fas fa-download"></i><div class="navbar-text">Download</div></div>
+  <div class="navbar-icon"><i class="fas fa-folder"></i><div class="navbar-text">Folders</div></div>
+  <div class="navbar-icon"><i class="fas fa-video"></i><div class="navbar-text">Videos</div></div>
+</div>
+<script>
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.querySelector(".content").classList.toggle("content-shift");
+  }
+</script>
+
+</body>
+  </html

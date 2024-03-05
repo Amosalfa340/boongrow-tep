@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-A1G4EJaU9BExIF9DK7XTrPPt2XoyKxsEjwMbUMws29ANq9knIm9lTLYwhbL9vCBbh2MNeA1grNa/ZpPp3R8uOQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  
+  <header>
+    <div class="menu-icon" onclick="toggleSidebar()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <h2 style="font-size:16px;">Boon</h2>
+    <a href="#" class="profile-icon">
+      <img src="profile-icon.png" alt="Profile Icon" width="30" height="30">
+    </a>
+  </header>
+  
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="" required>
+        <span class="show-password" onclick="togglePassword()">Show Password</span>
+      </div>
+      <div class="input-group">
+        <input type="checkbox" id="rememberMe" name="rememberMe">
+        <label for="rememberMe">Remember Me</label>
+      </div>
+      <a href="boon.html" button class="submit">Login</a></button>
+    </form>
+    
+    <div class="footer">
+      <p style="text-align:center;">Forgotten <a href="#">username or password?</a></p>
+      <h3 style="text-align:center;">Are you new to BoonGrow?</h3>
+      <p style="text-align:center;"><a href="account.html">Open an account</a> or <a href="account.html">Sign up</a></p>
+      <div class="links">
+        <a href="security.html">Security</a>
+        <a href="faq">FAQ</a>
+      </div>
+    </div>
+  </div>
+    <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="index.html" onclick="hideSidebar()">Home</a></li>
+      <li><a href="login.html" onclick="hideSidebar()">Login</a></li>
+      <li><a href="#" onclick="hideSidebar()">Services</a></li>
+      <li><a href="#" onclick="hideSidebar()">Contact</a></li>
+    </ul>
+  </div>
+  <script src="js/login.js"></script>
+  </body>
+  </html>
+  
